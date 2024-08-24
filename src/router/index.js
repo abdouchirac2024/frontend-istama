@@ -14,6 +14,11 @@ const router = createRouter({
       path: "/",
       component: () => import("../essais.vue"),
     },
+
+    {
+      path: '/apropos',
+      component: () => import('../components/Apropos.vue'), // Chemin vers Apropos.vue
+    },
     {
       path: "/login",
       component: () => import("../components/Login.vue"),
