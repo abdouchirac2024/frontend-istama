@@ -17,23 +17,19 @@
     <div class="home-container">
       <div class="home-content">
         <div class="inner-content">
-          <h3>best in city</h3>
-          <h2>trusted cab service in county</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum nihil deserunt odio repellendus dolorum suscipit excepturi placeat facilis dignissimos officiis aut nam, delectus possimus rerum consequatur similique! Deserunt, vitae. Officiis?</p>
-          <a href="#" class="booknow">book now</a>
+          <!-- <h3>best in city</h3> -->
+         
+          <p>Où souhaitez-vous aller ? Notre service de taxi de confiance est là pour vous emmener. Dites-nous simplement votre destination et nous nous occupons du reste.</p>
+         
         </div>
         <div class="inner-content">
           <div class="contact-form">
             <div class="form-heading">
-              <h1>book a cab</h1>
+              <h1>Réservez votre Taxi</h1>
             </div>
             <div class="form-fields">
-              <input type="text" placeholder="name">
-              <input type="text" placeholder="phone">
-              <input type="text" placeholder="when">
-              <input type="text" placeholder="date">
-              <input type="text" placeholder="start">
-              <input type="text" placeholder="end">
+              <input type="text" placeholder="Your Current Location" required>
+              <input type="text" placeholder="Destination" required>
             </div>
             <div class="submit">
               <a href="#">Submit</a>
@@ -51,9 +47,9 @@
         <div class="tarrif-container">
           <div class="inner-box">
             <img src="@/assets/images/image1.png" alt="Economy Class">
-            <h2>economy class</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat illum officia fugiat, autem facere iste repellendus omnis nemo dolore</p>
-            <h3>price: $3 /-</h3>
+            <h2>Classe Économique</h2>
+            <p>Voyagez confortablement sans vous ruiner avec notre service de taxi en classe économique. Idéal pour les trajets quotidiens ou occasionnels, notre classe économique vous offre un excellent rapport qualité-prix</p>
+            <h3>price: 1000 FCA /-</h3>
             <a href="#">order now</a>
           </div>
         </div>

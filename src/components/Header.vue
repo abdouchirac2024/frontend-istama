@@ -5,10 +5,10 @@
       </a>
       <div id="menu-bars" :class="{ 'fa-times': isMenuActive }" class="fas fa-bars" @click="toggleMenu"></div>
       <nav class="navbar" :class="{ active: isMenuActive }" ref="mynav">
-        <a href="#" @click="closeMenu">Home</a>
-        <a href="#" @click="closeMenu">Services</a>
-        <a href="#" @click="closeMenu">Tariffs</a>
-        <a href="#" @click="closeMenu">About</a>
+        <router-link to="/" @click.native="closeMenu">Accueil</router-link>
+      <router-link to="/services" @click.native="closeMenu">Services</router-link>
+      <router-link to="/tariffs" @click.native="closeMenu">Tariffs</router-link>
+      <router-link to="/apropos" @click.native="closeMenu">A Propos</router-link>
         <button class="btn-login" @click="goToLogin">Inscription</button>
       </nav>
     </header>
