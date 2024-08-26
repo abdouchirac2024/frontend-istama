@@ -40,7 +40,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-label">Nombre de sièges</label>
-                    <input type="text" class="form-control" v-model="bus.seat" required />
+                    <input type="number" class="form-control" v-model="bus.seat" required />
                   </div>
                 </div>
 
@@ -69,6 +69,10 @@
                 </div>
               </div>
             </form>
+            <!-- Message de succès -->
+            <div v-if="successMessage" class="alert alert-success mt-3">
+              {{ successMessage }}
+            </div>
           </div>
         </div>
       </div>
@@ -76,29 +80,31 @@
   </div>
 </template>
 
-
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from 'vue';
 import { useToast } from 'vue-toastification';
-import axios from 'axios';
+import DataService from '@/Services/DataService';
+
+const emit = defineEmits(['refreshList']);
 
 const bus = ref({
-  matricule: "",
-  brand: "",
-  model: "",
-  seat: "",
-  status: "actif",
+  matricule: '',
+  brand: '',
+  model: '',
+  seat: '',
+  status: 'actif',
   photo: null,
 });
 
+const successMessage = ref('');
 const toast = useToast();
 
 const openModal = () => {
-  $("#busModal").modal("show");
+  $('#busModal').modal('show');
 };
 
 const closeModal = () => {
-  $("#busModal").modal("hide");
+  $('#busModal').modal('hide');
 };
 
 const handleFileChange = (event) => {
@@ -108,26 +114,48 @@ const handleFileChange = (event) => {
 const createBus = async () => {
   try {
     const formData = new FormData();
-    formData.append("matricule", bus.value.matricule);
-    formData.append("brand", bus.value.brand);
-    formData.append("model", bus.value.model);
-    formData.append("seat", bus.value.seat);
-    formData.append("status", bus.value.status);
+    formData.append('matricule', bus.value.matricule);
+    formData.append('brand', bus.value.brand);
+    formData.append('model', bus.value.model);
+    formData.append('seat', bus.value.seat);
+    formData.append('status', bus.value.status);
     if (bus.value.photo) {
-      formData.append("photo", bus.value.photo);
+      formData.append('photo', bus.value.photo);
     }
 
-    const response = await axios.post("/api/buses", formData, {
+    const response = await DataService.post('/api/buses', formData, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
 
+    successMessage.value = response.data.message;
+
+    bus.value = {
+      matricule: '',
+      brand: '',
+      model: '',
+      seat: '',
+      status: 'actif',
+      photo: null,
+    };
+
     closeModal();
-    toast.success(response.data.message, { icon: true, theme: 'bubble', timeout: 5000 });
+    toast.success(response.data.message, {
+      icon: true,
+      theme: 'bubble',
+      timeout: 5000,
+    });
+
+    // Émettre l'événement pour rafraîchir la liste
+    emit('refreshList');
   } catch (error) {
-    console.error("Erreur lors de la création du bus :", error);
-    toast.error('Erreur lors de la création du bus', { icon: true, theme: 'bubble', timeout: 5000 });
+    console.error('Erreur lors de la création du bus :', error);
+    toast.error('Erreur lors de la création du bus', {
+      icon: true,
+      theme: 'bubble',
+      timeout: 5000,
+    });
   }
 };
 </script>
