@@ -47,6 +47,13 @@ const router = createRouter({
           path: "bus",
           component: bus,
         },
+
+        {
+          path: "edit-bus/:id",
+          name: "edit-bus",
+          component: () => import("../components/admin/Bus/edit-bus.vue"),
+          props: true,
+        },
         {
           path: "userList",
           component: () =>
